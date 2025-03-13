@@ -1,17 +1,18 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-import { RouterLink,RouterView } from 'vue-router';
+import { RouterLink, RouterView } from "vue-router";
+alert("hello")
 </script>
 
 <template>
   <header>
-  <nav>
-   <RouterLink to="/">Home</RouterLink>
-   <RouterLink to="/tasks-kanban">Kanban Tasks</RouterLink>
-  </nav>
- </header>
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/tasks-kanban">Kanban Tasks</RouterLink>
+    </nav>
+  </header>
 
- <RouterView />
+  <RouterView />
   <div>
     <a href="https://vite.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
@@ -30,9 +31,11 @@ import { RouterLink,RouterView } from 'vue-router';
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
