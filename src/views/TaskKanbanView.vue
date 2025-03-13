@@ -1,5 +1,7 @@
-<script setup></script>
+<script setup>
+import AddColumn from '../components/AddColumn.vue';
+</script>
 <template>
     <h1 class="p-3">Kanban</h1>
-    <div><i class="bi bi-airplane-engines"></i></div>
+    <AddColumn />
 </template>

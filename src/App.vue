@@ -1,18 +1,15 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
+import NavBar from "./components/NavBar.vue";
 </script>
 
 <template>
-  <header>
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/tasks-kanban">Kanban Tasks</RouterLink>
-    </nav>
-  </header>
-
-  <RouterView />
+  <NavBar />
+  <div class="mt-18">
+    <RouterView />
+  </div>
 </template>
 
-<style scoped>
+<style>
 @import "tailwindcss";
 </style>
