@@ -1,2 +1,3 @@
-<script setup></script>
-<template></template>
+<template>
+    <h1>Home page</h1>
+</template>

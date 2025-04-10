@@ -4,6 +4,11 @@ import TaskLists from '../components/TaskLists.vue';
 
 import { useKanban } from "../stores/kanban"
 const kanbanStore = useKanban()
+
+import { onMounted } from 'vue';
+onMounted(() => {
+    kanbanStore.fetchKanbanlists()
+})
 </script>
 <template>
     <h1 class="p-3">Kanban</h1>

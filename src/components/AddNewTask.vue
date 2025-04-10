@@ -15,7 +15,17 @@ function changeMode() {
 import { useKanban } from '../stores/kanban';
 const kanbanStore = useKanban()
 const taskName = ref("")
+const isError = ref(false)
 function saveTask() {
+    const checkname = new RegExp("^[a-zA-Z0-9 ]*$")
+    if (!checkname.test(taskName.value)) {
+        isError.value = true
+        setTimeout(() => {
+            isError.value = false
+        }, 4000)
+        return
+
+    }
     kanbanStore.addNewTask(taskName.value, props.columnId)
 
     changeMode();
@@ -60,6 +70,9 @@ function handleEnter(event) {
 
         </div>
     </form>
+    <div v-if="isError" class="text-red-500 text-sm mt-2">
+        Task name should only contain letters and numbers.
+    </div>
 
 
 </template>

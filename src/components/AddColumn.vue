@@ -3,15 +3,26 @@ import { ref } from 'vue';
 const inputMode = ref(false)
 function changeMode() {
     inputMode.value = !inputMode.value
-    coulmnName.value = ""
+    columnName.value = ""
 }
 
 import { useKanban } from '../stores/kanban';
 const kanbanStore = useKanban()
-const coulmnName = ref("")
-function saveColumn() {
-    kanbanStore.addNewColumn(coulmnName.value)
+const columnName = ref("")
+const isError = ref(false)
 
+
+function saveColumn() {
+    const checkname = new RegExp("^[a-zA-Z0-9 ]*$")
+    if (!checkname.test(columnName.value)) {
+        isError.value = true
+        setTimeout(() => {
+            isError.value = false
+        }, 4000)
+        return
+
+    }
+    kanbanStore.addNewColumn(columnName.value)
     changeMode();
 }
 
@@ -40,7 +51,7 @@ function handleEnter(event) {
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-gray-300">
                 <i class="bi bi-layout-sidebar-inset"></i>
             </div>
-            <input id="default-search" v-model="coulmnName" type="search"
+            <input id="default-search" v-model="columnName" type="search"
                 class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Add new column..." required @keydown.enter="handleEnter" />
             <button
@@ -54,6 +65,10 @@ function handleEnter(event) {
 
         </div>
     </form>
+
+    <p v-if="isError" class="text-red-500 text-sm mt-2 flex justify-self-center">Please enter a valid column name
+        (letters and numbers only).
+    </p>
 
 
 </template>
